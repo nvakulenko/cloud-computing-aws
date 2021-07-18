@@ -15,19 +15,19 @@ It will be a simple reddit messages word count analyzer. The biggest complexity 
 ## High-level design
 
 ### Diagram
-![Diagram]()
+![Diagram](https://raw.githubusercontent.com/nvakulenko/cloud-computing-aws/main/capstone-project/Design.png)
 
 ### Components
-S3 Bucket - storage for files which contain reddit comments
-Producer - listens to events from S3 bucket, if a new file appears in the directory, then Producer reads it, parses to records and sends to Kafka broker. Can be simple javaserver application or java-lambda.
-Kafka broker
-Zookeeper - is needed for running Kafka broker
-Consumer - reads messages from the topic and performs very simple text analysis - keywords count
+- S3 Bucket - storage for files which contain reddit comments
+- Producer - listens to events from S3 bucket, if a new file appears in the directory, then Producer reads it, parses to records and sends to Kafka broker. Can be simple javaserver application or java-lambda.
+- Kafka broker
+- Consumer - reads messages from the topic and performs very simple text analysis - keywords count
 Consumer can also gather some statistics and send it to CloudWatch:
 - message latency - delivery time for a massage 
 - average word count in message
 
 #### AWS Components:
-CloudWatch
-S3
-
+- CloudWatch
+- S3
+- Amazon msk 
+- ...
