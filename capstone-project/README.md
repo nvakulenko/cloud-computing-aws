@@ -59,3 +59,15 @@ Deploy terraform:
 `terraform init`
 
 `terraform deploy`
+
+#### Estimated costs
+Lets calculate costs for the application. 
+
+Starting point: assume once per day we analyse comments taken from reddit. Average comments count per day is 200 000, this is  6 million comments per month.
+
+And each file with comments is approximately 100 mb per day and 3,1 Gb per month.
+
+We need 2 lambdas for processing data - 1st reads from S3 bucket - 1 event per 1 file, 2nd - processes messages from SQS queue, number of messages = number of records in each reddit file.
+
+Detailed calculations for x1, x10, x100, x1000 load can be found in file:
+https://github.com/nvakulenko/cloud-computing-aws/blob/main/capstone-project/Estimated_costs.pdf
