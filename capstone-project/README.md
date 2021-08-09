@@ -37,7 +37,7 @@ Consumer gather some statistics and send it to CloudWatch Metrics:
   - S3 Bucket Event trigger
   - SQS Event trigger
   
-#### Build and deploy application 
+### Build and deploy application 
 Build consumer application:
 
 `cd /consumer`
@@ -60,7 +60,7 @@ Deploy terraform:
 
 `terraform deploy`
 
-#### Estimated costs
+### Estimated costs
 Lets calculate costs for the application. 
 
 Starting point: assume once per day we analyse comments taken from reddit. Average comments count per day is 200 000, this is  6 million comments per month.
