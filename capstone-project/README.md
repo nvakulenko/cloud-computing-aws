@@ -20,8 +20,7 @@ It will be a simple reddit messages word count analyzer. The biggest complexity 
 ### Components
 S3 Bucket - storage for files which contain reddit comments
 Producer - listens to events from S3 bucket, if a new file appears in the directory, then Producer reads it, parses to records and sends to Kafka broker. Can be simple javaserver application or java-lambda.
-Kafka broker
-Zookeeper - is needed for running Kafka broker
+SQS
 Consumer - reads messages from the topic and performs very simple text analysis - keywords count
 Consumer can also gather some statistics and send it to CloudWatch:
 - message latency - delivery time for a massage 
@@ -30,4 +29,5 @@ Consumer can also gather some statistics and send it to CloudWatch:
 #### AWS Components:
 CloudWatch
 S3
+SQS
 
