@@ -15,19 +15,47 @@ It will be a simple reddit messages word count analyzer. The biggest complexity 
 ## High-level design
 
 ### Diagram
-![Diagram]()
+![Diagram](https://raw.githubusercontent.com/nvakulenko/cloud-computing-aws/main/capstone-project/Design.png)
 
 ### Components
-S3 Bucket - storage for files which contain reddit comments
-Producer - listens to events from S3 bucket, if a new file appears in the directory, then Producer reads it, parses to records and sends to Kafka broker. Can be simple javaserver application or java-lambda.
-SQS
-Consumer - reads messages from the topic and performs very simple text analysis - keywords count
-Consumer can also gather some statistics and send it to CloudWatch:
+- S3 Bucket - storage for files which contain reddit comments
+- Producer - is triggered by events from S3 bucket - if a new file appears in the directory, then Producer reads it, parses to records and sends to SQS. It is a simple java-lambda.
+- SQS - Amazon Simple Queue Service (SQS) is a fully managed message queuing service.
+- Consumer - reads messages from SQS queue and performs very simple text analysis - keywords count. It is a simple java-lambda.
+Consumer gather some statistics and send it to CloudWatch Metrics:
 - message latency - delivery time for a massage 
-- average word count in message
+- word count in a message
 
-#### AWS Components:
-CloudWatch
-S3
-SQS
+#### Used AWS Components:
+- CloudWatch:
+  - logs
+  - metrics
+- S3
+- SQS
+- Lambda Functions
+- Triggers:
+  - S3 Bucket Event trigger
+  - SQS Event trigger
+  
+#### Build and deploy application 
+Build consumer application:
 
+`cd /consumer`
+
+`mvn clean install`
+
+`cd ..`
+
+Build producer application:
+
+`cd /producer`
+
+`mvn clean install`
+
+`cd ..`
+
+Deploy terraform:
+
+`terraform init`
+
+`terraform deploy`
